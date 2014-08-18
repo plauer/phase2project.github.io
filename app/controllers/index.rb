@@ -29,8 +29,8 @@ end
 
 configure do
   # get your api keys at https://www.linkedin.com/secure/developer
-  set :api, "your_api_key"
-  set :secret, "your_secret"
+  set :api, "75gm9smygalaro"
+  set :secret, "TJPurtMFnfnmQQ8e"
 end
 
 get "/" do
