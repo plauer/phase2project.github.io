@@ -1,5 +1,5 @@
 require "rubygems"
-require "haml"
+# require "haml"
 require "sinatra"
 require "linkedin"
 
@@ -34,7 +34,7 @@ configure do
 end
 
 get "/" do
-  haml :index
+  erb :index
 end
 
 get "/auth" do
