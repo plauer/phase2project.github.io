@@ -1,39 +1,11 @@
-require "rubygems"
-# require "haml"
-require "sinatra"
-require "linkedin"
+require 'linkedin'
 
 enable :sessions
 
-helpers do
-  def login?
-    !session[:atoken].nil?
-  end
-
-  def profile
-    linkedin_client.profile unless session[:atoken].nil?
-  end
-
-  def connections
-    linkedin_client.connections unless session[:atoken].nil?
-  end
-
-  private
-  def linkedin_client
-    client = LinkedIn::Client.new(settings.api, settings.secret)
-    client.authorize_from_access(session[:atoken], session[:asecret])
-    client
-  end
-
-end
-
-configure do
-  # get your api keys at https://www.linkedin.com/secure/developer
-  set :api, "75gm9smygalaro"
-  set :secret, "TJPurtMFnfnmQQ8e"
-end
 
 get "/" do
+
+
   erb :index
 end
 
@@ -58,20 +30,46 @@ get "/auth/callback" do
     atoken, asecret = client.authorize_from_request(session[:rtoken], session[:rsecret], pin)
     session[:atoken] = atoken
     session[:asecret] = asecret
+
+   connections.all.each do |c|
+    p c
+     User.create(:first_name => c.first_name.to_s, :last_name => c.last_name.to_s,
+                :headline => c.headline.to_s, :industry => c.industry.to_s,
+                :location => c.location.to_s, :picture_url => c.picture_url.to_s)
+    # p User.last.valid?
+  end
+
   end
   redirect "/"
 end
 
+get "/search" do 
+  @industries = User.where(industry: "Financial Services")
+  @locations = User.where(location: "San Francisco Bay Area")
+ 
 
-__END__
-@@index
--if login?
-  %p Welcome #{profile.first_name}!
-  %a{:href => "/auth/logout"} Logout
-  %p= profile.headline
-  %br
-  %div= "You have #{connections.total} connections!"
-  -connections.all.each do |c|
-    %div= "#{c.first_name} #{c.last_name} - #{c.headline}"
--else
-  %a{:href => "/auth"} Login using LinkedIn
+  erb :search
+end
+
+# post '/results' do 
+#   # @results = User.where("industry in (?) OR location in (?)", params[:industry], params[:location])
+
+
+
+#   redirect '/results'
+# end
+
+get '/results' do 
+   p '*' * 50
+  p params
+
+  @results = User.where("industry in (?)", ["Financial Services", "Internet"]).to_a
+  @search_keys = ["Financial Services", "Internet"].join(' - ')
+
+  erb :results
+end
+
+
+
+
+

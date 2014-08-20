@@ -1,0 +1,17 @@
+<div class = 'results'>
+<h1>My Connections in <em><%= @search_keys %></em></h1>
+  <% @results.each do |result| %>
+    <div class = "user_list">
+      <img src = "<%= result.picture_url %>">
+        <h3><%= result.first_name %> <%= result.last_name %> - <%= result.industry %></h3>
+        <p><%= result.headline %></p>
+    
+
+        <br>
+    </div>
+
+
+  <% end %>
+
+
+</div>

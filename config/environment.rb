@@ -35,7 +35,17 @@ configure do
 
   # Set the views to
   set :views, File.join(Sinatra::Application.root, "app", "views")
+
+  # set the api_key and secret_key
+  set :api, "75gm9smygalaro"
+  set :secret, "TJPurtMFnfnmQQ8e"
 end
+
+
+configure do
+
+end
+
 
 # Set up the controllers and helpers
 Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
