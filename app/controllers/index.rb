@@ -37,7 +37,7 @@ get "/auth/callback" do
         User.create(:first_name => c.first_name.to_s, :last_name => c.last_name.to_s,
                   :headline => c.headline.to_s, :industry => c.industry.to_s,
                   :location => c.location[:name].to_s, :picture_url => c.picture_url.to_s)
-      else 
+      else
         User.create(:first_name => c.first_name.to_s, :last_name => c.last_name.to_s,
                   :headline => c.headline.to_s, :industry => c.industry.to_s,
                   :location => nil, :picture_url => c.picture_url.to_s)
@@ -65,13 +65,21 @@ end
 # end
 
 get '/results' do 
-   industries = params[:industry]
-   p industries
-   locations = params[:location]
-   p locations
+  join_type = params[:join_type]
+  p join_type
+  params.delete("join_type")
+  @search_parameters = params
+  p params
+  
 
-  @results = User.where("industry in (?) OR location in (?)", params[:industry], params[:location]).to_a
-  @search_keys = ["Financial Services", "Internet"].join(' - ')
+
+  if join_type == 'or'
+    @results = User.where("industry in (?) OR location in (?)", params[:industry], params[:location]).to_a
+  elsif join_type == 'and'
+    @results = User.where("industry in (?) AND location in (?)", params[:industry], params[:location]).to_a
+  end
+
+  @results.uniq!
 
   erb :results
 end

@@ -1,13 +1,16 @@
 <div class = 'results'>
-<h1>My Connections in <em><%= @search_keys %></em></h1>
+
+<h1>Filters: </h1>
+<% @search_parameters.each do |key, values| %>
+  <h3><em><%= key.capitalize %> - <%= values.join(" & ") %></em></h3>
+<% end %>
+
 <% if @results %>
   <% @results.each do |result| %>
     <div class = "user_list">
       <img src = "<%= result.picture_url %>">
         <h3><%= result.first_name %> <%= result.last_name %> - <%= result.industry %></h3>
         <p><%= result.headline %></p>
-    
-
         <br>
     </div>
 
