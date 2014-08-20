@@ -1,14 +1,23 @@
-<div class = 'industry'>
+<div class = "search_parameters">
+  <form action = '/results' method = "get">
+    <div class = 'industry'>
+      <h3>Industries</h3>
+     <% @industry_results.each do |result| %>
+        <% next if result.industry == "" %>
+        <p><input type = "checkbox" name = "industry[]" value = "<%= result.industry %>"><%= result.industry %></p>
+      <% end %>
+    </div>
+
+    <div class = 'location'>
+    <h3>Locations</h3>
+     <% @location_results.each do |result| %>
+        <% next if result.location == "" %>
+        <p><input type = "checkbox" name = "location[]" value = "<%= result.location %>"><%= result.location %></p>
+      <% end %>
+
+    </div>
+
+      <input type = "submit" value = "See Connections">
+  </form>
 
 </div>
-
-<div class = 'location'>
-
-
-</div>
-
-<form action = '/results' method = "get">
-  <input type = 'text' name = 'title' placeholder = "Title">
-  <textarea name = "content" placeholder = "Content"></textarea>
-  <input type = "submit" value = "Match Parameters">
-</form>

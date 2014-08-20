@@ -1,5 +1,6 @@
 <div class = 'results'>
 <h1>My Connections in <em><%= @search_keys %></em></h1>
+<% if @results %>
   <% @results.each do |result| %>
     <div class = "user_list">
       <img src = "<%= result.picture_url %>">
@@ -12,6 +13,7 @@
 
 
   <% end %>
+<% end %>
 
 
 </div>

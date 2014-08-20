@@ -31,21 +31,26 @@ get "/auth/callback" do
     session[:atoken] = atoken
     session[:asecret] = asecret
 
+    #because not all users have locations ... will this break for users without other fields?
    connections.all.each do |c|
-    p c
-     User.create(:first_name => c.first_name.to_s, :last_name => c.last_name.to_s,
-                :headline => c.headline.to_s, :industry => c.industry.to_s,
-                :location => c.location.to_s, :picture_url => c.picture_url.to_s)
-    # p User.last.valid?
-  end
+      if c.location?
+        User.create(:first_name => c.first_name.to_s, :last_name => c.last_name.to_s,
+                  :headline => c.headline.to_s, :industry => c.industry.to_s,
+                  :location => c.location[:name].to_s, :picture_url => c.picture_url.to_s)
+      else 
+        User.create(:first_name => c.first_name.to_s, :last_name => c.last_name.to_s,
+                  :headline => c.headline.to_s, :industry => c.industry.to_s,
+                  :location => nil, :picture_url => c.picture_url.to_s)
+      end
+    end
 
   end
   redirect "/"
 end
 
 get "/search" do 
-  @industries = User.where(industry: "Financial Services")
-  @locations = User.where(location: "San Francisco Bay Area")
+  @industry_results = User.select("industry").group("industry").to_a
+  @location_results = User.select("location").group("location").to_a
  
 
   erb :search
@@ -60,10 +65,12 @@ end
 # end
 
 get '/results' do 
-   p '*' * 50
-  p params
+   industries = params[:industry]
+   p industries
+   locations = params[:location]
+   p locations
 
-  @results = User.where("industry in (?)", ["Financial Services", "Internet"]).to_a
+  @results = User.where("industry in (?) OR location in (?)", params[:industry], params[:location]).to_a
   @search_keys = ["Financial Services", "Internet"].join(' - ')
 
   erb :results

@@ -11,7 +11,7 @@ helpers do
 
   def connections
     # puts '*' * 50
-    # puts linkedin_client.connections.all.first
+    # puts linkedin_client.connections.all[9].location[:name]
     linkedin_client.connections unless session[:atoken].nil?
   end
 
