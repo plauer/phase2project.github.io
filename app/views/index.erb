@@ -7,23 +7,26 @@
 
   <form id = "search_query" action = "/search" method = "post">
     <div class = "search_template">
-    
+   
     <div class = "industry_div"> 
+      <h2>Top 5 Industries</h2>
       <% 5.times do |i| %>
       <button class = "industry" value = "<%= @industries[i].industry_name %>"><%= @industries[i].industry_name %></button><br>
       <%end%>
     </div>
 
     <div class = "location_div">
+    <h2>Top 5 Locations</h2>
     <% 5.times do |i| %>
       <button class = "location" value = "<%= @locations[i].location_name %>"><%= @locations[i].location_name %></button><br>
     <% end %>
     </div>
 
-    <!--   <br>
-      <input type = "submit" value = "See Results!"> -->
+  
     </div>
   </form>
+
+   <div id = "results_count"><h3>Now showing 0 Connections</h3></div>
 
   <div id = "results">
   </div>
@@ -34,15 +37,3 @@
 <% else %>
   <a href = "/auth">Login using LinkedIn</a>
 <% end %>
-
-<!-- @@index
--if login?
-  %p Welcome #{profile.first_name}!
-  %a{:href => "/auth/logout"} Logout
-  %p= profile.headline
-  %br
-  %div= "You have #{connections.total} connections!"
-  -connections.all.each do |c|
-    %div= "#{c.first_name} #{c.last_name} - #{c.headline}"
--else
-  %a{:href => "/auth"} Login using LinkedIn -->

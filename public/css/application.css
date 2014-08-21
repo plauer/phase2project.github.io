@@ -30,6 +30,11 @@
   margin-left:40%;
 }
 
+#results_count {
+/*  margin-right:40%;
+  margin-left:40%;*/
+  text-align:center;
+}
 
 #results div {
   display:inline-block;

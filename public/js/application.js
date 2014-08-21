@@ -4,6 +4,12 @@ $(document).ready(function() {
       $(".search_template").on('click', '.location', scanPreviousLocationResults);
   }
 
+
+  var calculateResults = function() {
+    var resultsCount = $('#results div').length
+    $('#results_count').append("<h3></h3>");
+    $('#results_count h3').innerHTML('Now showing: ' + resultsCount + 'connections.')
+  }
   
   var scanPreviousIndustryResults = function(event) {
     event.preventDefault();
@@ -46,7 +52,7 @@ $(document).ready(function() {
         }
       })
     }
- };
+  };
 
    var scanPreviousLocationResults = function(event) {
     event.preventDefault();
@@ -91,12 +97,8 @@ $(document).ready(function() {
     }
  };
 
-
-
-
-
-
 bindEvents();
+
 
 });
 
