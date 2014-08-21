@@ -11,7 +11,7 @@
   display:inline;
 }
 
-#results .item {
+#results div {
   display:inline-block;
   width:auto;
   height:auto;
