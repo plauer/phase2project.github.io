@@ -1,29 +1,32 @@
 
 <% if login? %>
-  <h1>Welcome <%= profile.first_name %>!</h1>
+  <h4>Welcome <%= profile.first_name %>!</h4>
   <a href = "/auth/logout">Logout</a>
   <p><%= profile.headline %></p>
   <br />
 
-
-
-  <h5><a href = "/search">View my Network</a></h5>
-
-<div class = "connections">
-  <% connections.all.each do |c| %>
-    <div class = "user_list">
-    <img src = "<%= c.picture_url %>">
-      <h3><%= c.first_name %> <%= c.last_name %> - <%= c.industry %></h3>
-      <p><%= c.headline %></p>
-      <% if c.location != nil %>
-        <em><%= c.location.name %></em>
-      <% end %>
+  <form id = "search_query" action = "/search" method = "post">
+    <div class = "search_template">
+    <% 5.times do |i| %>
+      <button class = "industry" value = "<%= @industries[i].industry_name %>"><%= @industries[i].industry_name %></button>
+      <button class = "location" value = "<%= @locations[i].location_name %>"><%= @locations[i].location_name %></button>
       <br>
+    <% end %>
+      <br>
+      <input type = "submit" value = "See Results!">
     </div>
-  <% end %>
-</div>
+  </form>
 
-  <div>Showing <%= connections.total %> connections!</div>
+  <div id = "results">
+    <div class = "item">
+      <img>
+        <h3></h3>
+        <p></p>
+        <p></p>
+      </div>
+  </div>
+
+
 
 
 <% else %>

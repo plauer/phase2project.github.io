@@ -1,24 +1,27 @@
-.user_list {
-  float:left;
-  padding:20px;
-  border:solid 1px lightblue;
+.search_template {
+/*  border: solid 2px blue;
+*/  margin-left:25%;
+  margin-right:25%;
+
+
 }
 
-.search_parameters {
-  display:inline-block;
-  font-size:.8em;
+.search_template button {
+
 }
 
-.search_parameters .industry {
-  float:left;
-  border:solid 1px blue;
+.search_template button.industry {
+ padding:10px;
 }
 
-.search_parameters .location {
-  float:left;
-  border:solid 1px blue;
-}
-
-.search_parameters form {
+.search_template button.location {
+  padding:10px;
   float:right;
+}
+
+.search_template input {
+  clear:both;
+
+  margin-left:30%;
+
 }
