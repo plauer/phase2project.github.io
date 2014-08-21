@@ -5,10 +5,11 @@
   <p><%= profile.headline %></p>
   <br />
 
-  <div>You have <%= connections.total %> connections!</div>
 
-  <h5><a href = "/search">Faceted Search</a></h5>
 
+  <h5><a href = "/search">View my Network</a></h5>
+
+<div class = "connections">
   <% connections.all.each do |c| %>
     <div class = "user_list">
     <img src = "<%= c.picture_url %>">
@@ -17,10 +18,12 @@
       <% if c.location != nil %>
         <em><%= c.location.name %></em>
       <% end %>
-
       <br>
     </div>
   <% end %>
+</div>
+
+  <div>Showing <%= connections.total %> connections!</div>
 
 
 <% else %>

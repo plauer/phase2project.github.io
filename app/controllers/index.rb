@@ -1,8 +1,4 @@
-require 'linkedin'
-
 enable :sessions
-
-
 get "/" do
 
 
@@ -48,40 +44,45 @@ get "/auth/callback" do
   redirect "/"
 end
 
+
 get "/search" do 
   @industry_results = User.select("industry").group("industry").to_a
   @location_results = User.select("location").group("location").to_a
+
+
+
  
 
   erb :search
 end
 
-# post '/results' do 
-#   # @results = User.where("industry in (?) OR location in (?)", params[:industry], params[:location])
-
-
-
-#   redirect '/results'
-# end
 
 get '/results' do 
   join_type = params[:join_type]
   p join_type
   params.delete("join_type")
   @search_parameters = params
-  p params
-  
 
 
-  if join_type == 'or'
-    @results = User.where("industry in (?) OR location in (?)", params[:industry], params[:location]).to_a
-  elsif join_type == 'and'
-    @results = User.where("industry in (?) AND location in (?)", params[:industry], params[:location]).to_a
-  end
 
-  @results.uniq!
+  # if params[:industry]
+
+  # if join_type == 'or'
+  #   @results = User.where("industry in (?) OR location in (?)", params[:industry], params[:location]).to_a
+  # elsif join_type == 'and'
+  #   @results = User.where("industry in (?) AND location in (?)", params[:industry], params[:location]).to_a
+  # end
+
+  # @results.uniq!
+  @results = User.where("industry in (?) OR location in (?)", params[:industry], params[:location]).to_a
 
   erb :results
+end
+
+
+post '/results' do 
+  p params
+
 end
 
 

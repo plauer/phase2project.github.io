@@ -1,15 +1,15 @@
 <div class = "search_parameters">
-  <form action = '/results' method = "get">
+  <form action = '/results' method = "post">
     <input type = "radio" name = "join_type" value = "and">AND Join<br>
     <input type = "radio" name = "join_type" value = "or">OR Join<br>
+
 
 
 
     <div class = 'industry'>
       <h3>Industries</h3>
      <% @industry_results.each do |result| %>
-        <% next if result.industry == "" %>
-        <p><input type = "checkbox" name = "industry[]" value = "<%= result.industry %>"><%= result.industry %></p>
+        <input type = "checkbox" name = "industry[]" value = "<%= result.industry %>"><%= result.industry %></p>
       <% end %>
     </div>
 
@@ -19,7 +19,6 @@
         <% next if result.location.nil? %>
         <p><input type = "checkbox" name = "location[]" value = "<%= result.location %>"><%= result.location %></p>
       <% end %>
-
     </div>
 
       <input type = "submit" value = "See Connections">
