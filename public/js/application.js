@@ -10,23 +10,47 @@ $(document).ready(function() {
   
   var scanPreviousIndustryResults = function(event) {
     event.preventDefault();
+    var pushAlready = false;
+    var industryPushed = $(this).attr('value');
+
     if ($(this).attr('class') !==  'industry active') {
       $(this).addClass('active');
     }
-    else {$(this).removeClass('active')};
+    else {
+      $(this).removeClass('active');
+      pushAlready = true;
+    };
 
     var previous_results = $('#results .item');
  
     var value_state = $(this).attr('value');
+
+    var buttons = $('.search_template button');
+    var buttonsActive = [];
+    for (var i = 0; i < buttons.length; i ++) {
+      if ( $(buttons[i]).hasClass('active')) {
+        buttonsActive.push(buttons[i]);
+      };     
+    };
+
+    console.log(buttonsActive)
     
 
     var counter = 0;
     for (var i = 0; i < previous_results.length; i ++) {
-      if (previous_results.find('p:eq(1)')[i].innerHTML.indexOf(value_state) != -1) {
-       previous_results[i].remove();
-       counter +=1;
-      }; 
+        if (previous_results.find('p:eq(1)')[i].innerHTML.indexOf(industryPushed) != -1) {
+         previous_results[i].remove();
+         counter +=1;
+        }; 
     };
+
+
+
+    //   if (previous_results.find('p:eq(1)')[i].innerHTML.indexOf(value_state) != -1) {
+    //    previous_results[i].remove();
+    //    counter +=1;
+    //   }; 
+    // };
 
 
     if (counter == 0) {

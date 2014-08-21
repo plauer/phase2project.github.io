@@ -1,8 +1,9 @@
 .search_template {
-/*  border: solid 2px blue;
-*/  margin-left:25%;
+  border: solid 2px blue;
+  margin-left:25%;
   margin-right:25%;
-
+/*  text-align:center;
+*/
 
 }
 
@@ -21,17 +22,17 @@
 
 .search_template button.industry {
  padding:10px;
+/* float:left;*/
 }
 
 .search_template button.location {
-  padding:10px;
   float:right;
+  padding:10px;
 }
 
 .search_template input {
   clear:both;
-
-  margin-left:30%;
+  margin-left:40%;
 
 }
 
