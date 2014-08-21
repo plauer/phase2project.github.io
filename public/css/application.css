@@ -6,8 +6,17 @@
 
 }
 
-.search_template button {
+#results {
+  display:inline;
+}
 
+#results .item {
+  display:inline-block;
+  width:auto;
+  height:auto;
+  border:solid 1px blue;
+  text-align:center;
+  padding:2px;
 }
 
 .search_template button.industry {
@@ -24,4 +33,15 @@
 
   margin-left:30%;
 
+}
+
+.active {
+  background-color: 'lightblue';
+ color : white;
+ /* font-weight : 'bold'*/
+}
+
+.unactive {
+  background-color: 'white';
+  color:black;
 }

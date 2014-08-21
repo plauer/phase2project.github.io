@@ -54,7 +54,7 @@ post '/industries' do
 
   p connections 
   content_type :json 
-  {connections: connections}.to_json
+  {connections: connections, industry: params.keys.first}.to_json
 end
 
 # select * from locations group by count(:location_name) desc 
