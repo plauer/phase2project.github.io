@@ -57,49 +57,19 @@ post '/industries' do
   {connections: connections, industry: params.keys.first}.to_json
 end
 
-# select * from locations group by count(:location_name) desc 
+post '/locations' do 
+  locations = Location.select('id').where("location_name = '#{params.keys.first}'").to_a
 
+  connections = []
+  locations.each do |location|
+    connections << Connection.find_by(:location_id => location.id)
+  end
 
+  p locations 
+  content_type :json 
+  {connections: connections, location: params.keys.first}.to_json
+end
 
-# get "/search" do 
-#   @industry_results = User.select("industry").group("industry").to_a
-#   @location_results = User.select("location").group("location").to_a
-
-
-
- 
-
-#   erb :search
-# end
-
-
-# get '/results' do 
-#   join_type = params[:join_type]
-#   p join_type
-#   params.delete("join_type")
-#   @search_parameters = params
-
-
-
-#   # if params[:industry]
-
-#   # if join_type == 'or'
-#   #   @results = User.where("industry in (?) OR location in (?)", params[:industry], params[:location]).to_a
-#   # elsif join_type == 'and'
-#   #   @results = User.where("industry in (?) AND location in (?)", params[:industry], params[:location]).to_a
-#   # end
-
-#   # @results.uniq!
-#   @results = User.where("industry in (?) OR location in (?)", params[:industry], params[:location]).to_a
-
-#   erb :results
-# end
-
-
-# post '/results' do 
-
-
-# end
 
 
 

@@ -7,13 +7,21 @@
 
   <form id = "search_query" action = "/search" method = "post">
     <div class = "search_template">
+    
+    <div class = "industry_div"> 
+      <% 5.times do |i| %>
+      <button class = "industry" value = "<%= @industries[i].industry_name %>"><%= @industries[i].industry_name %></button><br>
+      <%end%>
+    </div>
+
+    <div class = "location_div">
     <% 5.times do |i| %>
-      <button class = "industry" value = "<%= @industries[i].industry_name %>"><%= @industries[i].industry_name %></button>
-      <button class = "location" value = "<%= @locations[i].location_name %>"><%= @locations[i].location_name %></button>
-      <br>
+      <button class = "location" value = "<%= @locations[i].location_name %>"><%= @locations[i].location_name %></button><br>
     <% end %>
-      <br>
-      <input type = "submit" value = "See Results!">
+    </div>
+
+    <!--   <br>
+      <input type = "submit" value = "See Results!"> -->
     </div>
   </form>
 

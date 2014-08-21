@@ -1,8 +1,7 @@
 $(document).ready(function() {
     function bindEvents() {
       $(".search_template").on('click', '.industry', scanPreviousIndustryResults);
-
-      // $(".search_template").on('toggle', '.location', searchResultsField);
+      $(".search_template").on('click', '.location', scanPreviousLocationResults);
   }
 
   
@@ -24,20 +23,6 @@ $(document).ready(function() {
       $(previous_results).remove();
       counter+=1;
     };
-
-    // console.log(previous_results);
-    
-
-    // var counter = 0;
-    // for (var i = 0; i < previous_results.length; i ++) {
-    //     if (previous_results.find('p:eq(1)')[i].innerHTML.indexOf(industryPushed) != -1) {
-    //      previous_results[i].remove();
-    //      counter +=1;
-
-    //     }; 
-    // };
-
-
 
     if (counter === 0) {
 
@@ -61,7 +46,49 @@ $(document).ready(function() {
         }
       })
     }
+ };
 
+   var scanPreviousLocationResults = function(event) {
+    event.preventDefault();
+    var locationPushed = $(this).attr('value');
+    console.log(locationPushed);
+
+    if ($(this).attr('class') !==  'location active') {
+      $(this).addClass('active');
+    }
+    else {
+      $(this).removeClass('active');
+    };
+
+    var previous_results = $('#results .' + locationPushed.split(' ').join('.'));
+    var counter = 0;
+    if (previous_results.length > 0) {
+      $(previous_results).remove();
+      counter+=1;
+    };
+
+    if (counter === 0) {
+
+      var ajaxRequest = $.ajax({
+        type: 'post',
+        url: '/locations',
+        data: $(this).attr('value')
+      });
+
+      ajaxRequest.done( function(data) {
+        for (var i = 0; i < data.connections.length; i++) {
+          $('#results').append("<div><img><h3></h3><p></p><p></p></div>");
+
+
+          var template = $('#results div:last');
+          $(template).addClass(data.location);
+          $(template).find('img').attr("src", data.connections[i].picture_url);
+          $(template).find('h3').text(data.connections[i].first_name +' ' + data.connections[i].last_name);
+          $(template).find('p:first').text(data.connections[i].headline);
+          // $(template).find('p:eq(1)').text(data.industry);
+        }
+      })
+    }
  };
 
 
