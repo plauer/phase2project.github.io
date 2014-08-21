@@ -1,30 +1,57 @@
 $(document).ready(function() {
     function bindEvents() {
       // $(".search_parameters").on('click', "input[value='See Connections']", findResults)
-      $(".search_template").on('click', '.industry', industrySearchResultsField);
-      $(".search_template").on('toggle', '.location', searchResultsField);
+      $(".search_template").on('click', '.industry', scanPreviousIndustryResults);
+
+      // $(".search_template").on('toggle', '.location', searchResultsField);
   }
 
-  var industries = $('#results .item').find('p:eq(1)');
+  var previous_results = $('#results .item');
 
  
- var industrySearchResultsField = function(event) {
+ var scanPreviousIndustryResults = function(event) {
   event.preventDefault();
-   $(this).class('.active');
+  debugger
+  var class_state = $(this).attr('class');
+  var value_state = $(this).attr('value');
+  console.log(class_state);
+ //  if ( class_state != 'active') {
+ //   $(this).addClass('active');
+ // }
+ // else {
+ //    $(this).removeClass('active');
+ //   $(this).addClass('unctive');
+ // };
 
   // var industries = $('.search_template .industry')
-  // var array = [];
+  // var industry_array = [];
   // for (var i = 0; i < industries.length; i++) {
-  //   array.push(industries[i].value);
+  //   industry_array.push(industries[i].value);
   // };
+
+  
+  // for (var i = 0; i < previous_results.length; i ++) {
+  //   if (industry_array.indexOf(previous_results.find('p:eq(1)')[i].innerHTML) != -1) {
+  //    console.log(previous_results[i]);
+  //   }; 
+  // }
+  var counter = 0;
+  for (var i = 0; i < previous_results.length; i ++) {
+    if (previous_results.find('p:eq(1)')[i].innerHTML.indexOf(value_state) != -1) {
+     previous_results[i].remove();
+     counter +=1;
+    }; 
+  };
+
+  if (counter == 0) {retrieveIndustries}
 
   // findIndustries;
 
  };
 
 
-  var findIndustries = function(event) {
-    event.preventDefault();
+  var retrieveIndustries = function() {
+
  
 
     var ajaxRequest = $.ajax({
