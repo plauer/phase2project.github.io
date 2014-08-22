@@ -5,16 +5,15 @@ $(document).ready(function() {
   }
 
 
-  var calculateResults = function() {
-    var resultsCount = $('#results div').length
-    $('#results_count').append("<h3></h3>");
-    $('#results_count h3').innerHTML('Now showing: ' + resultsCount + 'connections.')
+  function calculateResults() {
+    var resultsCount = $('#results div').length;
+    $('#results_count h3').html('Now showing ' + resultsCount + ' connections.')
   }
   
   var scanPreviousIndustryResults = function(event) {
     event.preventDefault();
     var industryPushed = $(this).attr('value');
-    console.log(industryPushed);
+
 
     if ($(this).attr('class') !==  'industry active') {
       $(this).addClass('active');
@@ -27,6 +26,7 @@ $(document).ready(function() {
     var counter = 0;
     if (previous_results.length > 0) {
       $(previous_results).remove();
+      calculateResults();
       counter+=1;
     };
 
@@ -49,9 +49,13 @@ $(document).ready(function() {
           $(template).find('h3').text(data.connections[i].first_name +' ' + data.connections[i].last_name);
           $(template).find('p:first').text(data.connections[i].headline);
           $(template).find('p:eq(1)').text(data.industry);
+          calculateResults();
         }
       })
-    }
+
+    };
+    
+
   };
 
    var scanPreviousLocationResults = function(event) {
@@ -70,6 +74,7 @@ $(document).ready(function() {
     var counter = 0;
     if (previous_results.length > 0) {
       $(previous_results).remove();
+      calculateResults();
       counter+=1;
     };
 
@@ -91,12 +96,16 @@ $(document).ready(function() {
           $(template).find('img').attr("src", data.connections[i].picture_url);
           $(template).find('h3').text(data.connections[i].first_name +' ' + data.connections[i].last_name);
           $(template).find('p:first').text(data.connections[i].headline);
+          calculateResults();
           // $(template).find('p:eq(1)').text(data.industry);
         }
       })
-    }
+    };
+
+    calculateResults();
  };
 
+// calculateResults();
 bindEvents();
 
 
