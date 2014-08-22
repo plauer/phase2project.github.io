@@ -10,8 +10,8 @@ helpers do
   end
 
   def connections
-    # puts '*' * 50
-    # puts linkedin_client.connections.all[9].location[:name]
+    puts '*' * 50
+    puts linkedin_client.connections.all[9]
     linkedin_client.connections unless session[:atoken].nil?
   end
 
@@ -24,11 +24,13 @@ helpers do
         location = Location.create(:location_name => c.location[:name].to_s)
         Connection.create(:first_name => c.first_name.to_s, :last_name => c.last_name.to_s,
                           :headline => c.headline.to_s, :picture_url => c.picture_url.to_s,
-                          :location_id => location.id, :industry_id => industry.id)
+                          :location_id => location.id, :industry_id => industry.id,
+                          :industry => c.industry, :profile_url => c.profile_url)
       else 
         Connection.create(:first_name => c.first_name.to_s, :last_name => c.last_name.to_s,
                           :headline => c.headline.to_s, :picture_url => c.picture_url.to_s,
-                          :industry_id => industry.id)
+                          :industry_id => industry.id, :industry => c.industry, 
+                          :profile_url => c.profile_url)
       end
     end
   end

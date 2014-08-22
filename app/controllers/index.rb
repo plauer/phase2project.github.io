@@ -56,6 +56,7 @@ post '/industries' do
 end
 
 post '/locations' do 
+  puts linkedin_client.connections.all
   locations = Location.select('id').where("location_name = '#{params.keys.first}'").to_a
 
   connections = []
