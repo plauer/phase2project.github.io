@@ -17,7 +17,14 @@ helpers do
 
   def seed_connections_from_user
   #because not all users have locations ... will this break for users without other fields?
+    p connections.all.first.industry.to_s
     connections.all.each do |c|
+
+      if c.site_standard_profile_request != nil
+        profile_url = c.site_standard_profile_request[:url].to_s
+      else
+        prifle_url = nil
+      end
 
       industry = Industry.create(:industry_name => c.industry.to_s)
       if c.location != nil
@@ -25,12 +32,13 @@ helpers do
         Connection.create(:first_name => c.first_name.to_s, :last_name => c.last_name.to_s,
                           :headline => c.headline.to_s, :picture_url => c.picture_url.to_s,
                           :location_id => location.id, :industry_id => industry.id,
-                          :industry => c.industry, :profile_url => c.profile_url)
+                          :industry_name => industry.industry_name, :location_name => location.location_name,
+                          :profile_url => profile_url)
       else 
         Connection.create(:first_name => c.first_name.to_s, :last_name => c.last_name.to_s,
                           :headline => c.headline.to_s, :picture_url => c.picture_url.to_s,
-                          :industry_id => industry.id, :industry => c.industry, 
-                          :profile_url => c.profile_url)
+                          :industry_id => industry.id, :industry_name => industry.industry_name, 
+                          :profile_url => profile_url)
       end
     end
   end

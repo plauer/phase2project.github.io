@@ -39,7 +39,7 @@ get "/logged_in" do
   @industries = Industry.select('industry_name').group('industry_name').order("count(industry_name) desc").limit(5)
   @locations = Location.select('location_name').group('location_name').order("count(location_name) desc").limit(5)
 
-
+  p connections.all.first 
   erb :index
 end
 
@@ -56,7 +56,7 @@ post '/industries' do
 end
 
 post '/locations' do 
-  puts linkedin_client.connections.all
+  puts linkedin_client.connections.all[0].site_standard_profile_request[:url]
   locations = Location.select('id').where("location_name = '#{params.keys.first}'").to_a
 
   connections = []
