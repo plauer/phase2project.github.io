@@ -38,5 +38,14 @@ ActiveRecord::Base.establish_connection(
   :username => db.user,
   :password => db.password,
   :database => DB_NAME,
-  :encoding => 'utf8'
+  :encoding => 'utf8',
+  :timeout => 20
 )
+
+after do 
+  ActiveRecord::Base.clear_active_connections!
+end
+
+
+
+
