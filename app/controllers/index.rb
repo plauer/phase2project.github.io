@@ -38,8 +38,7 @@ end
 get "/logged_in" do 
   @industries = Industry.select('industry_name').group('industry_name').order("count(industry_name) desc").limit(5)
   @locations = Location.select('location_name').group('location_name').order("count(location_name) desc").limit(5)
-  p @industries 
-  p @locations 
+
 
   erb :index
 end
@@ -52,7 +51,6 @@ post '/industries' do
     connections << Connection.find_by(:industry_id => industry.id)
   end
 
-  p connections 
   content_type :json 
   {connections: connections, industry: params.keys.first}.to_json
 end
@@ -65,7 +63,7 @@ post '/locations' do
     connections << Connection.find_by(:location_id => location.id)
   end
 
-  p locations 
+ 
   content_type :json 
   {connections: connections, location: params.keys.first}.to_json
 end

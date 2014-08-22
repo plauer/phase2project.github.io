@@ -4,7 +4,6 @@
   margin-right:25%;
   height:500px;
   height:200px;
-
 }
 
 
@@ -40,19 +39,34 @@
   display:inline-block;
   width:auto;
   height:auto;
-/*  border:solid 1px blue;
-*/  text-align:center;
+  border:solid 1px blue;
+  text-align:center;
   padding:2px;
 }
 
+#results_div {
+  border:solid 1px green;
+  height:auto;
+  display:block;
+}
+
 #results {
-text-align:center;
+/*text-align:center;
+*/float:left;
  height:auto;
- width:auto;
- margin-left:10%;
- margin-right:10%;
-/* border:solid 1px black;
-*/}
+ width:50%;
+ margin-left:10px;
+ border:solid 1px black;
+}
+
+#selected_profile {
+  width:100px;
+  height:100px;
+  float:right;
+  margin-right:10px;
+  border:solid 5px red;
+
+}
 
 
 .active {

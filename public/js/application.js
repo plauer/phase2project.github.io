@@ -2,6 +2,13 @@ $(document).ready(function() {
     function bindEvents() {
       $(".search_template").on('click', '.industry', scanPreviousIndustryResults);
       $(".search_template").on('click', '.location', scanPreviousLocationResults);
+      $('#results').on('mouseover', '.outer', showProfile);
+  }
+
+  var showProfile = function(event) {
+    $('#selected_profile').append(this);
+    $('')
+
   }
 
 
@@ -61,7 +68,7 @@ $(document).ready(function() {
    var scanPreviousLocationResults = function(event) {
     event.preventDefault();
     var locationPushed = $(this).attr('value');
-    console.log(locationPushed);
+    // console.log(locationPushed);
 
     if ($(this).attr('class') !==  'location active') {
       $(this).addClass('active');
@@ -88,19 +95,22 @@ $(document).ready(function() {
 
       ajaxRequest.done( function(data) {
         for (var i = 0; i < data.connections.length; i++) {
-          $('#results').append("<div><img><h3></h3><p></p><p></p></div>");
+          // $('#results').append("<div><img><h3></h3><p></p><p></p></div>");
+          $('#results').append("<div class = 'outer'><img><div class = 'inner' style='display: none;'><h3></h3><p></p><p></p></div></div>");
 
 
-          var template = $('#results div:last');
+          var template = $('#results .outer:last');
           $(template).addClass(data.location);
           $(template).find('img').attr("src", data.connections[i].picture_url);
           $(template).find('h3').text(data.connections[i].first_name +' ' + data.connections[i].last_name);
           $(template).find('p:first').text(data.connections[i].headline);
+          $(template).find('p:eq(1)').text(data.industry);
           calculateResults();
-          // $(template).find('p:eq(1)').text(data.industry);
         }
       })
     };
+
+
 
     calculateResults();
  };
