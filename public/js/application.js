@@ -4,9 +4,19 @@ $(document).ready(function() {
       $(".search_template").on('click', '.location', scanPreviousLocationResults);
       $('#results').on('mouseover', '.outer', showProfile);
       $('#results').on('mouseout', '.outer', hideProfile);
+      $('#results').on('click', '.outer', makeLinkable);
+  }
+
+  var makeLinkable = function(event) {
+    var url = $(this).find('a').attr('href')   
+    $(location).attr('href',url);
   }
 
   var showProfile = function(event) {
+    $(this).find('img').css({
+                       width : '150px',
+                       height : '150px'
+                      });
     
     var profile = $(this).clone();
     $('#selected_profile').append(profile);
@@ -16,12 +26,16 @@ $(document).ready(function() {
 
   var hideProfile = function(event) {
     $('#selected_profile .outer:first').remove();
+    $(this).find('img').css({
+                       width : '',
+                       height : ''
+                      });
   };
 
 
   function calculateResults() {
     var resultsCount = $('#results div').length;
-    $('#results_count h3').html('Now showing ' + resultsCount + ' connections.')
+    $('#results_count h3').html('Now showing ' + resultsCount + ' connections.');
   }
   
   var scanPreviousIndustryResults = function(event) {
