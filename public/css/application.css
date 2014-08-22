@@ -60,12 +60,21 @@
 }
 
 #selected_profile {
-  width:100px;
-  height:100px;
+  width:500px;
+  height:500px;
   float:right;
-  margin-right:10px;
-  border:solid 5px red;
+  margin-right:50px;
+  border:solid 1px red;
+  text-align:center;
+}
 
+#selected_profile .outer {
+
+}
+
+#selected_profile img {
+  width:200px;
+  height:200px;
 }
 
 

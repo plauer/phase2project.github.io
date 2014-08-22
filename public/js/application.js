@@ -3,13 +3,20 @@ $(document).ready(function() {
       $(".search_template").on('click', '.industry', scanPreviousIndustryResults);
       $(".search_template").on('click', '.location', scanPreviousLocationResults);
       $('#results').on('mouseover', '.outer', showProfile);
+      $('#results').on('mouseout', '.outer', hideProfile);
   }
 
   var showProfile = function(event) {
-    $('#selected_profile').append(this);
-    $('')
-
+    
+    var profile = $(this).clone();
+    $('#selected_profile').append(profile);
+    $('#selected_profile .inner').show();
+    
   }
+
+  var hideProfile = function(event) {
+    $('#selected_profile .outer:first').remove();
+  };
 
 
   function calculateResults() {
