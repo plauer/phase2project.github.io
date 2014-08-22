@@ -26,7 +26,7 @@ helpers do
         prifle_url = nil
       end
 
-      industry = Industry.create(:industry_name => c.industry.to_s)
+      industry = Industry.create(:industry_name => String(c.industry))
       if c.location != nil
         location = Location.create(:location_name => c.location[:name].to_s)
         Connection.create(:first_name => c.first_name.to_s, :last_name => c.last_name.to_s,
