@@ -4,20 +4,20 @@ helpers do
   end
 
   def profile
-    # puts '*' * 50
-    # puts linkedin_client.profile 
+    puts '*' * 50
+    puts linkedin_client.profile
     linkedin_client.profile unless session[:atoken].nil?
   end
 
   def connections
-    puts '*' * 50
-    puts linkedin_client.connections.all[9]
+    # puts '*' * 50
+    # puts linkedin_client.connections.all[9]
     linkedin_client.connections unless session[:atoken].nil?
   end
 
   def seed_connections_from_user
   #because not all users have locations ... will this break for users without other fields?
-    p connections.all.first.industry.to_s
+    # p connections.all.first.industry.to_s
     connections.all.each do |c|
 
       if c.site_standard_profile_request != nil

@@ -9,7 +9,8 @@ $(document).ready(function() {
 
   var makeLinkable = function(event) {
     var url = $(this).find('a').attr('href')   
-    $(location).attr('href',url);
+    // $(location).attr('href',url);
+    window.open(url);
   }
 
   var showProfile = function(event) {
@@ -35,7 +36,7 @@ $(document).ready(function() {
 
   function calculateResults() {
     var resultsCount = $('#results div').length;
-    $('#results_count h3').html('Now showing ' + resultsCount + ' connections.');
+    $('#results_count h3').html('Now showing ' + resultsCount + ' connections');
   }
   
   var scanPreviousIndustryResults = function(event) {
@@ -80,7 +81,7 @@ $(document).ready(function() {
           $(template).find('p:eq(1)').text(data.connections[i].industry_name);
           $(template).find('p:eq(2)').text(data.connections[i].location_name);
           $(template).find('a').attr("href",  data.connections[i].profile_url );
-          $(template).find('a').text(data.connections[i].first_name + "s LinkedIn Profile")
+          // $(template).find('a').text(data.connections[i].first_name + "s LinkedIn Profile")
           calculateResults();
 
           // var template = $('#results div:last');
@@ -143,7 +144,7 @@ $(document).ready(function() {
           $(template).find('p:eq(1)').text(data.connections[i].industry_name);
           $(template).find('p:eq(2)').text(data.connections[i].location_name);
           $(template).find('a').attr("href",  data.connections[i].profile_url );
-          $(template).find('a').text(data.connections[i].first_name + "s LinkedIn Profile")
+          // $(template).find('a').text(data.connections[i].first_name + "s LinkedIn Profile")
           calculateResults();
         }
       })

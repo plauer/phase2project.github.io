@@ -1,9 +1,21 @@
+<header>
+ <h1>Linked Out & Easy to Find</h1>
+ </header>
+
+
 
 <% if login? %>
-  <h4>Welcome <%= profile.first_name %>!</h4>
+
+<div class = "intro">
+
+  <img src = "<%=profile.picture_url %>">
+  <p>Welcome <%= profile.first_name %>!</p>
   <a href = "/auth/logout">Logout</a>
   <p><%= profile.headline %></p>
-  <br />
+ 
+
+ </div>
+ 
 
   <form id = "search_query" action = "/search" method = "post">
     <div class = "search_template">
@@ -25,10 +37,13 @@
   
     </div>
   </form>
-
-   <div id = "results_count"><h3>Now showing 0 connections</h3></div>
+  <br><br>
+  
 
 <div id = "results_div">
+ <div id = "results_count"><h3>Now showing 0 connections</h3></div>
+
+
   <div id = "results">
   </div>
 

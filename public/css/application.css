@@ -1,9 +1,50 @@
+html { 
+  background: url("images/linkedin.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+a {
+  color:white;
+  font-weight:bold;
+/*  font-size:1.5em;*/
+}
+
+
+body {
+  background-color:transparent;
+}
+header {
+  opacity:.95;
+  color:white;
+  background-color:black;
+}
+
+
 .search_template {
-/*  border: solid 2px blue;
-*/  margin-left:25%;
+  background-color:white;
+  opacity:.95;
+  margin-left:25%;
   margin-right:25%;
-  height:500px;
-  height:200px;
+  height:300px;
+  
+  color:black;
+}
+
+.intro {
+  color:black;
+  font-size: 2em;
+  font-weight:bold;
+/*  background-color:black;*/
+  opacity:0.9;
+  margin-bottom:10px;
+
+}
+
+.intro a {
+  color:black;
 }
 
 
@@ -15,12 +56,17 @@
 */ text-align:center;
 }
 
+button {
+  margin-top:2px;
+  margin-bottom:5px;
+}
+
 .search_template div.location_div {
   float:right;
   padding:10px;
 /*  border:solid 1px blue;
 */  width:40%;
-  height:auto;
+ /* height:auto;*/
   text-align:center;
 }
 
@@ -30,56 +76,76 @@
 }
 
 #results_count {
-/*  margin-right:40%;
-  margin-left:40%;*/
+  clear:both;
+/*  border:solid 1px blue;
+*/
   text-align:center;
+}
+
+#results_count h3 {
+  color:white;
+  font-size:2.5em;
 }
 
 #results div {
   display:inline-block;
   width:auto;
-  height:auto;
-  border:solid 1px blue;
+  /*height:auto;*/
   text-align:center;
   padding:2px;
+
+
+
 }
 
 #results_div {
-  border:solid 1px green;
   height:auto;
   display:block;
+  height:900px;
+  padding-top:10px;
+ /* margin-right:50px;
+  margin-left:50px;*/
+  color:white;
+  opacity:.9;
+  background-color:black;
 }
 
 #results {
 /*text-align:center;
+
 */float:left;
- height:auto;
+/* height:auto;*/
  width:50%;
  margin-left:10px;
- border:solid 1px black;
+/* border:solid 1px black;
+*//*   background-color:black;
+  opacity:0.7;*/
 }
 
 #selected_profile {
   width:500px;
   height:500px;
   float:right;
-  margin-right:50px;
-  border:solid 1px red;
-  text-align:center;
+  margin-right:150px;
+  font-size:2em;
+/*  border:solid 1px red;
+*/  text-align:center;
 }
 
-#selected_profile .outer {
-
+#selected_profile h3 {
+  font-size:2em;
 }
+
+
 
 #selected_profile img {
-  width:200px;
+  width:400px;
   height:200px;
 }
 
 
 .active {
-  background-color: lightblue;
+background-color: darkblue;
  color : white;
   font-weight : bold;
 }
